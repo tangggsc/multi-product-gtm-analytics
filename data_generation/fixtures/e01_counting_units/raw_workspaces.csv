@@ -1,0 +1,9 @@
+product,workspace_id,workspace_name,created_by_user_id,source_account_system,source_account_id,created_at,is_test,ingested_at
+A,ws_100,acme-data-eng,u_001,crm_a,101,2026-01-06T09:10:00Z,false,2026-01-06T09:15:00Z
+A,ws_101,acme-analytics,u_001,crm_a,101,2026-01-20T10:00:00Z,false,2026-01-20T10:05:00Z
+A,ws_200,gamma-main,u_002,crm_a,202,2026-01-16T08:10:00Z,false,2026-01-16T08:15:00Z
+A,ws_300,delta-pilot,u_003,crm_a,303,2026-01-21T16:10:00Z,false,2026-01-21T16:15:00Z
+A,ws_400,sams-sandbox,u_004,,,2026-02-01T19:10:00Z,false,2026-02-01T19:15:00Z
+B,ws_100,beta-platform,u_001,crm_b,101,2026-01-09T11:10:00Z,false,2026-01-09T11:15:00Z
+B,ws_500,acme-assets,u_002,crm_b,987,2026-01-13T14:10:00Z,false,2026-01-13T14:15:00Z
+B,ws_600,gamma-trial,u_003,crm_b,654,2026-02-21T08:10:00Z,false,2026-02-21T08:15:00Z

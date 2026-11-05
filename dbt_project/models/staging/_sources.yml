@@ -1,0 +1,197 @@
+version: 2
+
+sources:
+  - name: raw
+    description: >
+      Generated source records for products A and B, loaded by
+      data_generation/load_fixtures.py. Tables are shared by both products and
+      distinguished by product and source-system identifiers. All timestamps
+      are UTC. These tables are kept exactly as delivered, so they may contain
+      defects by design; cleaned models are built separately.
+    schema: raw
+    tables:
+      - name: raw_crm_accounts
+        description: One account record in one CRM system. Account identity is (source_system, source_account_id); the same ID can mean different companies in different systems.
+        data_tests:
+          - unique:
+              column_name: "source_system || '|' || source_account_id"
+        columns:
+          - name: source_system
+            data_tests: [not_null]
+          - name: source_account_id
+            data_tests: [not_null]
+          - name: account_name
+          - name: domain
+            description: Descriptive attribute only. Similar domains do not justify merging companies.
+          - name: created_at
+          - name: updated_at
+          - name: ingested_at
+            description: Warehouse arrival time, distinct from business time.
+
+      - name: raw_users
+        description: One user record within one product. User identity is (product, user_id). Email is an attribute, not a durable company key.
+        data_tests:
+          - unique:
+              column_name: "product || '|' || user_id"
+        columns:
+          - name: product
+            data_tests:
+              - not_null
+              - accepted_values:
+                  arguments:
+                    values: ["A", "B"]
+          - name: user_id
+            data_tests: [not_null]
+          - name: email
+          - name: created_at
+          - name: updated_at
+          - name: ingested_at
+
+      - name: raw_workspaces
+        description: One workspace within one product. Workspace identity is (product, workspace_id). Account-link fields may be null when no supported company link exists.
+        data_tests:
+          - unique:
+              column_name: "product || '|' || workspace_id"
+        columns:
+          - name: product
+            data_tests:
+              - not_null
+              - accepted_values:
+                  arguments:
+                    values: ["A", "B"]
+          - name: workspace_id
+            data_tests: [not_null]
+          - name: workspace_name
+          - name: created_by_user_id
+          - name: source_account_system
+            description: CRM system of the linked account; null when unlinked.
+          - name: source_account_id
+            description: CRM account ID within source_account_system; null when unlinked.
+          - name: created_at
+            description: Workspace signup time; defines the signup cohort.
+            data_tests: [not_null]
+          - name: is_test
+            data_tests: [not_null]
+          - name: ingested_at
+
+      - name: raw_workspace_memberships
+        description: One user's membership interval in a workspace. Inclusive valid_from, exclusive valid_to; null valid_to means open-ended. A person can belong to workspaces of several companies.
+        data_tests:
+          - unique:
+              column_name: "product || '|' || membership_id"
+        columns:
+          - name: product
+            data_tests: [not_null]
+          - name: membership_id
+            data_tests: [not_null]
+          - name: workspace_id
+            data_tests: [not_null]
+          - name: user_id
+            data_tests: [not_null]
+          - name: role
+          - name: valid_from
+            data_tests: [not_null]
+          - name: valid_to
+          - name: ingested_at
+
+      - name: raw_event_deliveries
+        description: >
+          One delivered copy of an event. delivery_id identifies the delivered
+          copy; (product, event_id) identifies the logical event. Repeated event
+          IDs are an expected source condition (retries), so event_id is
+          intentionally not tested for uniqueness here. user_id can be null for
+          system-generated activity.
+        data_tests:
+          - unique:
+              column_name: "product || '|' || delivery_id"
+        columns:
+          - name: product
+            data_tests: [not_null]
+          - name: delivery_id
+            data_tests: [not_null]
+          - name: event_id
+            data_tests: [not_null]
+          - name: workspace_id
+            data_tests: [not_null]
+          - name: user_id
+          - name: event_name
+            data_tests: [not_null]
+          - name: occurred_at
+            description: Business time of the event; used for event-mapping validity.
+            data_tests: [not_null]
+          - name: ingested_at
+
+      - name: raw_billing_customers
+        description: One customer record in one billing system. Identity is (source_system, billing_customer_id). One company may have several billing customers.
+        data_tests:
+          - unique:
+              column_name: "source_system || '|' || billing_customer_id"
+        columns:
+          - name: source_system
+            data_tests: [not_null]
+          - name: billing_customer_id
+            data_tests: [not_null]
+          - name: customer_name
+          - name: source_account_system
+          - name: source_account_id
+          - name: created_at
+          - name: updated_at
+          - name: ingested_at
+
+      - name: raw_billing_transactions
+        description: >
+          One payment or refund transaction. Amounts are nonnegative; the
+          transaction type sets the sign of net cash. Only successful payments
+          qualify for paid conversion. Service periods are inclusive-start,
+          exclusive-end; a missing service period means unknown entitlement.
+        data_tests:
+          - unique:
+              column_name: "source_system || '|' || transaction_id"
+        columns:
+          - name: source_system
+            data_tests: [not_null]
+          - name: transaction_id
+            data_tests: [not_null]
+          - name: billing_customer_id
+            data_tests: [not_null]
+          - name: product
+            data_tests:
+              - not_null
+              - accepted_values:
+                  arguments:
+                    values: ["A", "B"]
+          - name: workspace_id
+            description: Explicit workspace link. Unlinked payments stay in financial reconciliation and are never guessed into workspace conversions.
+          - name: transaction_type
+            data_tests:
+              - not_null
+              - accepted_values:
+                  arguments:
+                    values: ["payment", "refund"]
+          - name: status
+            data_tests:
+              - not_null
+              - accepted_values:
+                  arguments:
+                    values: ["succeeded", "failed", "pending"]
+          - name: amount
+            data_tests: [not_null]
+          - name: currency
+            data_tests: [not_null]
+          - name: payment_at
+            data_tests: [not_null]
+          - name: service_period_start
+          - name: service_period_end
+          - name: original_transaction_id
+            description: For refunds, the payment being refunded.
+          - name: ingested_at
+
+  - name: expected
+    description: >
+      Independent expected-results ledger for the loaded fixture, written by
+      hand before any transformation logic. Tests compare computed results to
+      this ledger, not to a second implementation of the same rule.
+    schema: expected
+    tables:
+      - name: paying_counts
+        description: Expected paying counts per as-of time, metric and (optionally) product.

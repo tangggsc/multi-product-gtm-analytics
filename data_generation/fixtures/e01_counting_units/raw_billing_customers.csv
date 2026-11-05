@@ -1,0 +1,7 @@
+source_system,billing_customer_id,customer_name,source_account_system,source_account_id,created_at,updated_at,ingested_at
+billing_a,cus_a_001,Acme Corp,crm_a,101,2026-02-25T09:00:00Z,2026-02-25T09:00:00Z,2026-02-25T09:05:00Z
+billing_a,cus_a_002,Gamma Data,crm_a,202,2026-03-04T08:00:00Z,2026-03-04T08:00:00Z,2026-03-04T08:05:00Z
+billing_a,cus_a_003,Delta Systems,crm_a,303,2026-01-30T16:00:00Z,2026-01-30T16:00:00Z,2026-01-30T16:05:00Z
+billing_b,cus_b_001,ACME Corporation,crm_b,987,2026-03-09T14:00:00Z,2026-03-09T14:00:00Z,2026-03-09T14:05:00Z
+billing_b,cus_b_002,Beta Labs,crm_b,101,2026-03-01T11:00:00Z,2026-03-01T11:00:00Z,2026-03-01T11:05:00Z
+billing_b,cus_b_003,Gamma Data Inc,crm_b,654,2026-03-11T08:00:00Z,2026-03-11T08:00:00Z,2026-03-11T08:05:00Z

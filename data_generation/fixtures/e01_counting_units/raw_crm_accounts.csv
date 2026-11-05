@@ -1,0 +1,7 @@
+source_system,source_account_id,account_name,domain,created_at,updated_at,ingested_at
+crm_a,101,Acme Corp,acme.example,2026-01-05T09:00:00Z,2026-01-05T09:00:00Z,2026-01-05T10:00:00Z
+crm_b,987,ACME Corporation,acme.example,2026-01-12T14:00:00Z,2026-01-12T14:00:00Z,2026-01-12T15:00:00Z
+crm_b,101,Beta Labs,betalabs.example,2026-01-08T11:00:00Z,2026-01-08T11:00:00Z,2026-01-08T12:00:00Z
+crm_a,202,Gamma Data,gammadata.example,2026-01-15T08:00:00Z,2026-01-15T08:00:00Z,2026-01-15T09:00:00Z
+crm_b,654,Gamma Data Inc,gammadata.example,2026-02-20T08:00:00Z,2026-02-20T08:00:00Z,2026-02-20T09:00:00Z
+crm_a,303,Delta Systems,delta.example,2026-01-20T16:00:00Z,2026-01-20T16:00:00Z,2026-01-20T17:00:00Z

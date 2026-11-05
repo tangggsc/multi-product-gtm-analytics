@@ -1,0 +1,15 @@
+name: gtm_analytics
+version: "0.1.0"
+config-version: 2
+profile: gtm_analytics
+
+model-paths: ["models"]
+seed-paths: ["seeds"]
+test-paths: ["tests"]
+macro-paths: ["macros"]
+
+clean-targets: ["target", "dbt_packages", "logs"]
+
+seeds:
+  gtm_analytics:
+    +schema: reference

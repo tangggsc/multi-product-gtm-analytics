@@ -1,0 +1,69 @@
+version: 2
+
+seeds:
+  - name: ref_account_mapping
+    description: >
+      Answers: which canonical company does a record from this particular
+      source represent? Keyed by (source_system, source_account_id) plus a
+      validity interval (inclusive valid_from, exclusive valid_to, null =
+      open-ended). For billing rows, source_account_id holds the billing
+      customer ID. Missing matches stay unresolved; nothing is merged on
+      similar names or domains.
+    config:
+      column_types:
+        source_system: varchar
+        source_account_id: varchar
+        canonical_account_id: varchar
+        match_method: varchar
+        evidence_reference: varchar
+        valid_from: timestamptz
+        valid_to: timestamptz
+    columns:
+      - name: source_system
+        data_tests: [not_null]
+      - name: source_account_id
+        data_tests: [not_null]
+      - name: canonical_account_id
+        data_tests: [not_null]
+      - name: match_method
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ["verified_link", "explicit_crm_link"]
+      - name: evidence_reference
+        data_tests: [not_null]
+      - name: valid_from
+        data_tests: [not_null]
+      - name: valid_to
+
+  - name: ref_event_mapping
+    description: >
+      Answers: what does this source event mean, and does it qualify for
+      activation? Joined on product, source event name and occurred_at with
+      inclusive-start, exclusive-end validity. The flag alone does not
+      establish activation; the metric's 7-day window also applies.
+    config:
+      column_types:
+        product: varchar
+        source_event_name: varchar
+        normalized_event_name: varchar
+        qualifies_for_activation: boolean
+        valid_from: timestamptz
+        valid_to: timestamptz
+    columns:
+      - name: product
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ["A", "B"]
+      - name: source_event_name
+        data_tests: [not_null]
+      - name: normalized_event_name
+        data_tests: [not_null]
+      - name: qualifies_for_activation
+        data_tests: [not_null]
+      - name: valid_from
+        data_tests: [not_null]
+      - name: valid_to

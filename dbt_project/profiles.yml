@@ -1,0 +1,12 @@
+# Local DuckDB connection. Contains no credentials, so it is version-controlled.
+# Run dbt from the repository root (see README.md) so the default path resolves
+# to the same file the fixture loader writes. Override with GTM_DUCKDB_PATH.
+gtm_analytics:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      path: "{{ env_var('GTM_DUCKDB_PATH', 'gtm_analytics.duckdb') }}"
+      threads: 4
+      settings:
+        TimeZone: UTC

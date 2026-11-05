@@ -1,0 +1,13 @@
+source_system,source_account_id,canonical_account_id,match_method,evidence_reference,valid_from,valid_to
+crm_a,101,COMPANY_001,verified_link,fixture_e01_acme,2026-01-01T00:00:00Z,
+crm_b,987,COMPANY_001,verified_link,fixture_e01_acme,2026-01-01T00:00:00Z,
+billing_a,cus_a_001,COMPANY_001,explicit_crm_link,fixture_e01_billing_a_cus_a_001,2026-01-01T00:00:00Z,
+billing_b,cus_b_001,COMPANY_001,explicit_crm_link,fixture_e01_billing_b_cus_b_001,2026-01-01T00:00:00Z,
+crm_b,101,COMPANY_002,verified_link,fixture_e01_beta,2026-01-01T00:00:00Z,
+billing_b,cus_b_002,COMPANY_002,explicit_crm_link,fixture_e01_billing_b_cus_b_002,2026-01-01T00:00:00Z,
+crm_a,202,COMPANY_003,verified_link,fixture_e01_gamma,2026-01-01T00:00:00Z,
+crm_b,654,COMPANY_003,verified_link,fixture_e01_gamma,2026-01-01T00:00:00Z,
+billing_a,cus_a_002,COMPANY_003,explicit_crm_link,fixture_e01_billing_a_cus_a_002,2026-01-01T00:00:00Z,
+billing_b,cus_b_003,COMPANY_003,explicit_crm_link,fixture_e01_billing_b_cus_b_003,2026-01-01T00:00:00Z,
+crm_a,303,COMPANY_004,verified_link,fixture_e01_delta,2026-01-01T00:00:00Z,
+billing_a,cus_a_003,COMPANY_004,explicit_crm_link,fixture_e01_billing_a_cus_a_003,2026-01-01T00:00:00Z,
