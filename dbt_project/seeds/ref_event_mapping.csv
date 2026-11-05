@@ -1,0 +1,5 @@
+product,source_event_name,normalized_event_name,qualifies_for_activation,valid_from,valid_to
+A,workflow_success,successful_run,true,2026-01-01T00:00:00Z,2026-07-01T00:00:00Z
+A,flow_run_completed,successful_run,true,2026-07-01T00:00:00Z,
+B,asset_materialization_success,successful_materialization,true,2026-01-01T00:00:00Z,
+A,page_view,page_view,false,2026-01-01T00:00:00Z,

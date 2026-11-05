@@ -1,0 +1,8 @@
+source_system,transaction_id,billing_customer_id,product,workspace_id,transaction_type,status,amount,currency,payment_at,service_period_start,service_period_end,original_transaction_id,ingested_at
+billing_a,txn_a_001,cus_a_001,A,ws_100,payment,succeeded,500.00,USD,2026-03-01T09:00:00Z,2026-03-01T00:00:00Z,2026-04-01T00:00:00Z,,2026-03-01T09:05:00Z
+billing_a,txn_a_002,cus_a_001,A,ws_101,payment,succeeded,200.00,USD,2026-03-01T09:01:00Z,2026-03-01T00:00:00Z,2026-04-01T00:00:00Z,,2026-03-01T09:06:00Z
+billing_a,txn_a_003,cus_a_002,A,ws_200,payment,succeeded,300.00,USD,2026-03-05T08:00:00Z,2026-03-05T00:00:00Z,2026-04-05T00:00:00Z,,2026-03-05T08:05:00Z
+billing_a,txn_a_004,cus_a_003,A,ws_300,payment,succeeded,150.00,USD,2026-02-01T16:00:00Z,2026-02-01T00:00:00Z,2026-03-01T00:00:00Z,,2026-02-01T16:05:00Z
+billing_b,txn_b_001,cus_b_001,B,ws_500,payment,succeeded,800.00,USD,2026-03-10T14:00:00Z,2026-03-10T00:00:00Z,2026-04-10T00:00:00Z,,2026-03-10T14:05:00Z
+billing_b,txn_b_002,cus_b_002,B,ws_100,payment,succeeded,400.00,USD,2026-03-02T11:00:00Z,2026-03-02T00:00:00Z,2026-04-02T00:00:00Z,,2026-03-02T11:05:00Z
+billing_b,txn_b_003,cus_b_003,B,ws_600,payment,failed,250.00,USD,2026-03-12T08:00:00Z,2026-03-12T00:00:00Z,2026-04-12T00:00:00Z,,2026-03-12T08:05:00Z

@@ -1,0 +1,14 @@
+[project]
+name = "multi-product-gtm-analytics"
+version = "0.1.0"
+description = "GTM analytics for a two-product SaaS business using dbt and DuckDB on synthetic data."
+readme = "README.md"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "dbt-core==1.12.6",
+    "dbt-duckdb==1.11.1",
+    "duckdb==2.0.0",
+]
+
+[tool.uv]
+package = false

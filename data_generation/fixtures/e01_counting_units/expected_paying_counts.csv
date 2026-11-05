@@ -1,0 +1,11 @@
+as_of,metric,product,expected_value,rationale
+2026-03-20T00:00:00Z,paying_companies,,3,"COMPANY_001 (A+B), COMPANY_002 (B), COMPANY_003 (A). Delta expired 2026-03-01; Gamma's product B payment failed."
+2026-03-20T00:00:00Z,paying_account_products,,4,"001-A, 001-B, 002-B, 003-A. Acme's two product A workspaces are one account-product."
+2026-03-20T00:00:00Z,paying_accounts,A,2,"COMPANY_001, COMPANY_003"
+2026-03-20T00:00:00Z,paying_accounts,B,2,"COMPANY_001, COMPANY_002"
+2026-03-20T00:00:00Z,paying_workspaces,,5,"A/ws_100, A/ws_101, A/ws_200, B/ws_100, B/ws_500. More workspaces than companies or account-products."
+2026-02-15T00:00:00Z,paying_companies,,1,"Only COMPANY_004 (Delta), service period 2026-02-01 to 2026-03-01; all other periods start in March."
+2026-02-15T00:00:00Z,paying_account_products,,1,004-A
+2026-02-15T00:00:00Z,paying_accounts,A,1,COMPANY_004
+2026-02-15T00:00:00Z,paying_accounts,B,0,No product B payments before March
+2026-02-15T00:00:00Z,paying_workspaces,,1,A/ws_300
