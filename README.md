@@ -11,8 +11,10 @@ See [PROJECT.md](PROJECT.md) for the business context, scope and metric contract
 | Area | State |
 | --- | --- |
 | Toolchain (Python 3.12, dbt Core 1.12.6, dbt-duckdb 1.11.1, DuckDB 2.0.0) | Pinned; see [docs/decisions/0001-toolchain-versions.md](docs/decisions/0001-toolchain-versions.md) |
+| Source data model (relationship diagram, join keys) | Designed; see [docs/data-model.md §1](docs/data-model.md#1-source-relationship-diagram) |
 | Seven raw source tables and two reference tables | Defined and tested |
 | E01 counting-units fixture (3 companies, 4 paying account-products) | Loaded; verified against the expected ledger |
+| Analytics data model (star schema, model catalog) | Designed; see [docs/data-model.md §2](docs/data-model.md#2-analytics-star-schema) |
 | Staging, intermediate and mart models | Not started |
 | Investigation and findings | Not started |
 
