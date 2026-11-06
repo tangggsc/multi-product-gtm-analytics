@@ -16,6 +16,23 @@ See [PROJECT.md](PROJECT.md) for the business context, scope and metric contract
 | Staging, intermediate and mart models | Not started |
 | Investigation and findings | Not started |
 
+## Data model
+
+Facts (center) connect to three dimensions: product, company and workspace. A bridge translates every CRM and billing ID into one canonical company. This is the target design; most facts are not built yet. See [docs/data-model.md](docs/data-model.md) for the full diagram, the source-table relationships and a catalog of every model.
+
+```mermaid
+erDiagram
+    dim_products   ||--o{ dim_workspaces            : ""
+    dim_accounts   |o--o{ dim_workspaces            : "if resolved"
+    dim_accounts   ||--o{ bridge_source_accounts    : "source IDs"
+    dim_workspaces ||--o{ fct_product_events        : ""
+    dim_workspaces ||--o| fct_workspace_funnel      : ""
+    dim_workspaces |o--o{ fct_billing_transactions  : "if linked"
+    dim_accounts   |o--o{ fct_billing_transactions  : "if resolved"
+    dim_accounts   ||--o{ fct_account_product_daily : ""
+    dim_products   ||--o{ fct_account_product_daily : ""
+```
+
 ## Run it
 
 Requires [uv](https://docs.astral.sh/uv/). Run all commands from the repository root.
